@@ -19,6 +19,7 @@ export class AppComponent {
 
  constructor() {
   this.sourceList = [];
+  this.displayList = [];
   let satellitesUrl = 'https://handlers.education.launchcode.org/static/satellites.json';
 
   window.fetch(satellitesUrl).then(function(response) {
@@ -37,7 +38,8 @@ export class AppComponent {
         // TODO: loop over satellites
         // TODO: create a Satellite object using new Satellite(fetchedSatellites[i].name, fetchedSatellites[i].type, fetchedSatellites[i].launchDate, fetchedSatellites[i].orbitType, fetchedSatellites[i].operational);
         // TODO: add the new Satellite object to sourceList using: this.sourceList.push(satellite);
-
+        this.displayList = this.sourceList.slice(0);
+        
      }.bind(this));
   }.bind(this));
 
@@ -45,4 +47,22 @@ export class AppComponent {
  
   title = 'angular-orbit-report';
   sourceList: Satellite[];
+  displayList: Satellite[];
+
+
+  search(searchTerm: string) : void {
+    let matchingSatellites: Satellite[] = [];
+    searchTerm = searchTerm.toLowerCase();
+
+    for (let i = 0 ; i < this.sourceList.length ; i++){
+      let name = this.sourceList[i].name.toLowerCase();
+
+      if (name.indexOf(searchTerm) > -1) {
+        matchingSatellites.push(this.sourceList[i]);
+      }
+    }
+
+    this.displayList = matchingSatellites;
+
+  }
 }
