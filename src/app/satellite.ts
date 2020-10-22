@@ -12,4 +12,5 @@ export class Satellite {
     type: string;
     operational: boolean;
     launchDate: string;
+
 }

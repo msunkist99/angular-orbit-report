@@ -1,3 +1,4 @@
+import { unescapeIdentifier } from '@angular/compiler';
 import { Component, OnInit, Input } from '@angular/core';
 import { Satellite } from '../satellite';
 
@@ -15,4 +16,13 @@ export class OrbitListComponent implements OnInit {
 
   @Input() satellites: Satellite[];
 
+  shouldShowWarning(satelliteType: string) : boolean {
+    console.log(satelliteType);
+    console.log(typeof satelliteType);
+
+    if (satelliteType.toUpperCase() === 'SPACE DEBRIS') {
+      return true;
+    }
+    return false;
+  }
 }
