@@ -12,11 +12,15 @@
       <th>Launch Date</th>
    </tr>
    <!-- TODO: put <tr *ngFor=""></tr> here -->
-   <tr *ngFor="let satellite of satellites">
-        <td>{{satellite.name}}</td>
-        <td  [class.warning]="shouldShowWarning(satellite.type)">{{satellite.type}}</td>
-        <td>{{satellite.operational}}</td>
-        <td>{{satellite.orbitType}}</td>
-        <td>{{satellite.launchDate}}</td>
+   <tr *ngFor="let satellite of satellites"
+       [class.zebraStripes]="checkZebraStripes()">
+
+
+    <td>{{satellite.name}}</td>
+    <td  [class.warning]="shouldShowWarning(satellite.type)">{{satellite.type}}</td>
+    <td>{{satellite.operational}}</td>
+    <td>{{satellite.orbitType}}</td>
+   <td>{{satellite.launchDate}}</td>
+
    </tr>
 </table>

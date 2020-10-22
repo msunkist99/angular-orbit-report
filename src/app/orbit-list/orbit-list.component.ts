@@ -8,8 +8,11 @@ import { Satellite } from '../satellite';
   styleUrls: ['./orbit-list.component.css']
 })
 export class OrbitListComponent implements OnInit {
+  zebraStripes: boolean;
 
-  constructor() { }
+
+  constructor() { 
+  }
 
   ngOnInit() {
   }
@@ -36,5 +39,10 @@ export class OrbitListComponent implements OnInit {
         return 0;
       }
     });
+  }
+
+  checkZebraStripes() : boolean {
+    this.zebraStripes = !this.zebraStripes;
+    return this.zebraStripes;
   }
 }

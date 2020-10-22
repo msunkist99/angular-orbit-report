@@ -7,6 +7,10 @@
     background-color: #da8a8a;
 }
 
+.zebraStripes {
+    background-color: lightpink;
+}
+
 table {
   color: #111;
   border-radius: 5px;
