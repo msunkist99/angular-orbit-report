@@ -17,12 +17,24 @@ export class OrbitListComponent implements OnInit {
   @Input() satellites: Satellite[];
 
   shouldShowWarning(satelliteType: string) : boolean {
-    console.log(satelliteType);
-    console.log(typeof satelliteType);
-
     if (satelliteType.toUpperCase() === 'SPACE DEBRIS') {
       return true;
     }
     return false;
+  }
+
+  sort(column: string): void {
+    console.log(column);
+    this.satellites.sort(function(a: Satellite, b:Satellite): number {
+      if(a[column] < b[column]){
+        return -1;
+      }
+      else if (a[column] > b[column]) {
+        return 1;
+      }
+      else {
+        return 0;
+      }
+    });
   }
 }
