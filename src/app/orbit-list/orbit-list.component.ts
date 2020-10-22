@@ -12,6 +12,7 @@ export class OrbitListComponent implements OnInit {
 
 
   constructor() { 
+    this.zebraStripes = false;
   }
 
   ngOnInit() {

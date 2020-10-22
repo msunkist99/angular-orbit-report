@@ -20,6 +20,14 @@ table {
   background: #dad8d8;
 }
 
+tr:nth-child(odd) {
+    background-color: lightgreen;
+  }
+  
+tr:nth-child(even) {
+    background-color: lightgray;
+  }
+
 .header-row {
     background: #34495E;
     color: #fff
@@ -29,4 +37,9 @@ th, td {
     text-align: left;
     margin: 5px 10px;
     padding: 6px;
+}
+
+th {
+    background-color: #111;
+    color: #dad8d8;
 }
