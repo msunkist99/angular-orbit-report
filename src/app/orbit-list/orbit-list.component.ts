@@ -8,11 +8,8 @@ import { Satellite } from '../satellite';
   styleUrls: ['./orbit-list.component.css']
 })
 export class OrbitListComponent implements OnInit {
-  zebraStripes: boolean;
-
 
   constructor() { 
-    this.zebraStripes = false;
   }
 
   ngOnInit() {
@@ -28,7 +25,6 @@ export class OrbitListComponent implements OnInit {
   }
 
   sort(column: string): void {
-    console.log(column);
     this.satellites.sort(function(a: Satellite, b:Satellite): number {
       if(a[column] < b[column]){
         return -1;
@@ -40,10 +36,5 @@ export class OrbitListComponent implements OnInit {
         return 0;
       }
     });
-  }
-
-  checkZebraStripes() : boolean {
-    this.zebraStripes = !this.zebraStripes;
-    return this.zebraStripes;
   }
 }
