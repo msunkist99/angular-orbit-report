@@ -23,11 +23,13 @@ export class AppComponent {
   sourceList: Satellite[];
   displayList: Satellite[];
   typeCountList: SatelliteTypeCount[];
+  searchValue = null;
 
   constructor() {
     this.sourceList = [];
     this.displayList = [];
     this.typeCountList = [];
+    this.searchValue = null;
 
     let satellitesUrl = 'https://handlers.education.launchcode.org/static/satellites.json';
     
@@ -48,35 +50,46 @@ export class AppComponent {
         }
 
         this.displayList = this.sourceList.slice(0);
-        //console.log("this.displayList - " + this.displayList);
         this.typeCountList = this.countSatelliteTypes(this.displayList) ;
-        //console.log("this.typeCountList - " + this.typeCountList);
       }.bind(this));
     }.bind(this));
 
   }
  
-  search(searchTerm: string) : void {
+  search(searchTerm: string, searchColumn: string) : void {
     let matchingSatellites: Satellite[] = [];
     searchTerm = searchTerm.toLowerCase();
 
     for (let i = 0 ; i < this.sourceList.length ; i++){
-      let name = this.sourceList[i].name.toLowerCase();
+  
+      if (searchColumn === 'name') {
+        let name = this.sourceList[i].name.toLowerCase();
+        if (name.indexOf(searchTerm) > -1) {
+          matchingSatellites.push(this.sourceList[i]);
+        }
+      }
+      else if (searchColumn === 'type') {
+        let type = this.sourceList[i].type.toLowerCase();
 
-      if (name.indexOf(searchTerm) > -1) {
-        matchingSatellites.push(this.sourceList[i]);
+        if (type.indexOf(searchTerm) > -1) {
+          matchingSatellites.push(this.sourceList[i]);
+        }
+      }
+      else if (searchColumn === 'orbit') {
+        let orbitType = this.sourceList[i].orbitType.toLowerCase();
+
+        if (orbitType.indexOf(searchTerm) > -1) {
+          matchingSatellites.push(this.sourceList[i]);
+        }
       }
     }
 
     this.displayList = matchingSatellites;
-    console.log("matchingSatellites - " + matchingSatellites);
-    this.typeCountList = this.countSatelliteTypes(matchingSatellites) ;
+    this.typeCountList = this.countSatelliteTypes(this.displayList) ;
   }
 
   countSatelliteTypes(satellites) : SatelliteTypeCount[] {
     const total = 0;
-
-    console.log("countSatelliteTypes satellites.length - " + satellites.length);
     let typeCountList: SatelliteTypeCount[] = [];
 
     for (let i = 0 ; i < satellites.length ; i++){
@@ -103,7 +116,6 @@ export class AppComponent {
       }
     }
 
-    console.log("typeCountList - " + typeCountList);
     return typeCountList;
   }
 }
